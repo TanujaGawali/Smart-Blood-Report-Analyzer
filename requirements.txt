@@ -1,0 +1,76 @@
+# ============================================================
+#   SMART BLOOD REPORT ANALYZER — Requirements
+#   Install all Python packages:  pip install -r requirements.txt
+# ============================================================
+
+# ── Web App ──────────────────────────────────────────────────
+streamlit>=1.32.0
+
+# ── PDF Handling ─────────────────────────────────────────────
+pdfplumber>=0.10.0          # Read digital/text-based PDFs
+pdf2image>=1.17.0           # Convert scanned PDF pages to images (needs poppler)
+
+# ── OCR (for scanned PDFs) ───────────────────────────────────
+easyocr>=1.7.0              # Extract text from images/scanned PDFs
+pytesseract>=0.3.10        # OCR for image-based PDFs (needs Tesseract binary)
+
+# ── Data & ML ────────────────────────────────────────────────
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0         # Random Forest model
+joblib>=1.3.0               # Save/load trained model
+
+# ── Image Processing ─────────────────────────────────────────
+Pillow>=10.0.0
+
+# ============================================================
+#   POPPLER — REQUIRED FOR SCANNED PDF SUPPORT
+#   (pdf2image depends on poppler — install separately below)
+#
+#   WINDOWS:
+#     1. Download from: https://github.com/oschwartz10612/poppler-windows/releases
+#     2. Extract the zip (e.g., to C:\poppler)
+#     3. Add C:\poppler\Library\bin to your System PATH
+#        (Search "Environment Variables" → System Variables → Path → Edit → New)
+#     4. Restart your terminal and run the app
+#
+#   LINUX / WSL:
+#     sudo apt-get update
+#     sudo apt-get install -y poppler-utils
+#
+#   MAC (Homebrew):
+#     brew install poppler
+#
+#   VERIFY INSTALLATION (any OS):
+#     pdftoppm -v
+#     (should print poppler version — if command not found, PATH is not set)
+#
+#   NOTE: If poppler is NOT installed, the app will still work for
+#   digital PDFs (like hospital-generated reports). Only scanned/
+#   photographed PDFs need poppler + easyocr.
+# ============================================================
+pypdf>=3.0.0               # Additional PDF text extractor (no poppler needed)
+pdfminer.six>=20221105     # Third PDF fallback extractor
+pypdf>=3.0.0               # PDF text extractor fallback (no poppler needed)
+pdfminer.six>=20221105     # PDF text extractor fallback
+
+# ============================================================
+#   TESSERACT OCR — REQUIRED FOR IMAGE-BASED PDFs (like Drlogy)
+#   Install the Tesseract binary separately:
+#
+#   WINDOWS:
+#     1. Download installer from:
+#        https://github.com/UB-Mannheim/tesseract/wiki
+#     2. Run the installer (use default path: C:\Program Files\Tesseract-OCR)
+#     3. Add to PATH: C:\Program Files\Tesseract-OCR
+#     4. Restart terminal
+#     5. Verify: tesseract --version
+#
+#   LINUX:
+#     sudo apt-get install tesseract-ocr
+#
+#   MAC:
+#     brew install tesseract
+# ============================================================
+
+reportlab>=4.0.0           # PDF report generation
